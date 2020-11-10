@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:plant_app/Model/ProductClass.dart';
-import 'package:plant_app/Screen/ProductOverview.dart';
+
+import 'Overview.dart';
 
 class Plant extends StatefulWidget {
   final Product obj;
   const Plant(this.obj);
+
   @override
   _PlantState createState() => _PlantState();
 }
@@ -142,20 +144,11 @@ class _PlantState extends State<Plant> {
                                 color: Colors.white,
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 100.0),
-                                  child: InkWell(
-                                    onTap: () {
-                                     // int index;
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) => ProductOverview(overviewList[index])));
-                                    },
-                                    child: Image.network(
-                                      widget.obj.image,
-                                      // width: 900,
-                                      // height: 600,
-                                      fit: BoxFit.cover,
-                                    ),
+                                  child: Image.network(
+                                    widget.obj.image,
+                                    // width: 900,
+                                    // height: 600,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
@@ -225,7 +218,16 @@ class _PlantState extends State<Plant> {
                     ),
                   ),
                 ],
-              )
+              ),
+              InkWell(
+                onTap: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) =>
+                              Overview(widget.obj)));
+                },
+                  child: Icon(Icons.arrow_drop_down,size: 30,))
             ],
           ),
         ),
